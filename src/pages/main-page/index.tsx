@@ -1,18 +1,36 @@
-import useApi, { JHolderApi } from "@/hooks/useApi"
-import { useEffect } from "react";
+import UsersList from "@/components/users-list";
+import { JHolderUserType } from "@/hooks/useApi/types";
+import useApi, { JHolderApi } from "@/hooks/useApi/useApi";
+import { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 
-export default function MainPage () {
-    const api:JHolderApi = useApi();
-    useEffect(()=>{
-        (async ()=>{
-            const result = await api.users();
-            console.log("result", result);
-        })()
-    }, [])
-    return (
+export default function MainPage() {
+  const [users, setUsers] = useState<JHolderUserType[] | null>(null);
+
+  const api: JHolderApi = useApi();
+  useEffect(() => {
+    (async () => {
+      const result: AxiosResponse<JHolderUserType[]> = await api.users();
+      setUsers(result.data);
+    })();
+  }, []);
+  return (
+    <>
+      {users === null ? (
+        // TODO: Error component may be created.
+        <p>Loading</p>
+      ) : (
         <>
-        main page
-
+          <p className="text-2xl font-bold text-center leading-10 my-1">
+            Users List
+          </p>
+          <div className="m-auto p-3 gap-3 flex flex-auto flex-wrap">
+            {users.map((user, index) => (
+              <UsersList key={index} user={user} />
+            ))}
+          </div>
         </>
-    )
+      )}
+    </>
+  );
 }
