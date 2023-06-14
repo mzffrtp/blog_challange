@@ -24,6 +24,7 @@ export default function MainPage() {
           <p className="text-2xl font-bold text-center leading-10 my-1">
             Users List
           </p>
+          <hr />
           <div className="m-auto p-3 gap-3 flex flex-auto flex-wrap">
             {users.map((user, index) => (
               <UsersList key={index} user={user} />

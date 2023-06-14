@@ -1,5 +1,6 @@
 import { JHolderUserType } from "@/hooks/useApi/types";
 import styles from "./index.module.css";
+import { Link } from "react-router-dom";
 
 export type UsersListPropsType = {
   user: JHolderUserType;
@@ -25,9 +26,17 @@ export default function UsersList({ user }: UsersListPropsType) {
             <p className="underline font-bold">Location:</p>
             <p>{user.address.city}</p>
           </div>
+        <div 
+        onClick={()=> {
+            console.log(user.id, "tiklandi");
+            
+        }}>
+            <Link to={`/users/${user.id}`} className="flex justify-center"><button className="border-4 rounded-lg border-sky-300 border-double hover:border-solid hover:bg-slate-300 bg-blue-400 w-80"
+        >Details</button></Link>
+        
+        </div>
         </div>
       </div>
-      
     </div>
   );
 }
