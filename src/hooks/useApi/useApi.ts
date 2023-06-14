@@ -1,5 +1,5 @@
 import axios, { Axios, AxiosResponse } from "axios";
-import { JHolderUserType } from "./types";
+import { JHolderUserType, JholderAlbumType, JholderPostType } from "./types";
 
 export class JHolderApi {
   private readonly axiosClient: Axios;
@@ -26,6 +26,29 @@ export class JHolderApi {
       await this.axiosClient.get<JHolderUserType>("users/" + userId);
 
     return user.data;
+  }
+
+  async getAlbums(userId?: number, start?: number, limit?: number) {
+    const userAlbums: AxiosResponse<JholderAlbumType[]> =
+      await this.axiosClient.get<JholderAlbumType[]>("albums", {
+        params: {
+          userId: userId,
+          _start: start,
+          _limit: limit,
+        },
+      });
+    return userAlbums.data;
+  }
+
+  async getPosts(userId?: number, start?: number, limit?: number) {
+    const userPosts = await this.axiosClient.get<JholderPostType[]>("posts", {
+      params: {
+        userId: userId,
+        _start: start,
+        _limit: limit,
+      },
+    });
+    return userPosts.data;
   }
 }
 
