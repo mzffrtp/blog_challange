@@ -19,11 +19,19 @@ export default function UserDeailPosts({ post }: UserDetailPostsType) {
         </h5>
         <ul className="my-4 space-y-3">
           <li>
-            <p className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white h-full">
+            <p className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white h-60 text-center">
               {post.body}
             </p>
           </li>
         </ul>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            className="focus:outline-none text-white bg-lime-600 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
+          >
+            Details
+          </button>
+        </div>
       </div>
     </>
   );
