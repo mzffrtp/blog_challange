@@ -7,8 +7,8 @@ import {
 import useApi from "@/hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import UserAlbums from "../user-albums/user-albums";
-import UserPosts from "../user-posts/user-posts";
+import UserDetailAlbums from "./components/user-detail-albums";
+import UserDetailPosts from "./components/user-detail-posts";
 
 type UserDetailParamType = {
   userId: string | undefined;
@@ -61,15 +61,19 @@ export default function UserDetails() {
       <p className="text-2xl font-bold text-center leading-10 my-1">
         {user?.name}´s Albums
       </p>
-      <div className="flex justify-center">
-        <UserAlbums />
+      <div className="flex flex-wrap justify-center gap-6 mb-3">
+        {albums?.map((album, index) => {
+          return <UserDetailAlbums key={index} album={album} />;
+        })}
       </div>
       <hr />
       <p className="text-2xl font-bold text-center leading-10 my-1">
         {user?.name}´s Posts
       </p>
-      <div className="flex justify-center">
-        <UserPosts />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 m-2">
+        {posts?.map((post, index) => {
+          return <UserDetailPosts key={index} post={post} />;
+        })}
       </div>
     </>
   );

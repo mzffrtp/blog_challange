@@ -25,7 +25,7 @@ export type JHolderUserType = {
 export type JholderAlbumType = {
   userId: number;
   id: number;
-  titel: string;
+  title: string;
 };
 
 export type JholderPostType = JholderAlbumType & {
