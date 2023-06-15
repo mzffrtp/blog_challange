@@ -10,7 +10,9 @@ export default function UsersList({ user }: UsersListPropsType) {
     <div className="m-auto my-3">
       <div className={styles.card}>
         <div className={styles.cardFront}>
-          <p className={`${styles.title} text-ellipsis overflow-hidden`}>{user.name}</p>
+          <p className={`${styles.title} text-ellipsis overflow-hidden`}>
+            {user.name}
+          </p>
           <p className={styles.subtitle}>{user.company.name}</p>
         </div>
         <div className={styles.cardBack}>
@@ -26,15 +28,13 @@ export default function UsersList({ user }: UsersListPropsType) {
             <p className="underline font-bold">Location:</p>
             <p>{user.address.city}</p>
           </div>
-        <div 
-        onClick={()=> {
-            console.log(user.id, "tiklandi");
-            
-        }}>
-            <Link to={`/users/${user.id}`} className="flex justify-center"><button className="border-4 rounded-lg border-sky-300 border-double hover:border-solid hover:bg-slate-300 bg-blue-400 w-80"
-        >Details</button></Link>
-        
-        </div>
+          <div>
+            <Link to={`/users/${user.id}`} className="flex justify-center">
+              <button className="border-4 rounded-lg border-sky-300 border-double hover:border-solid hover:bg-slate-300 bg-blue-400 w-80">
+                Details
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

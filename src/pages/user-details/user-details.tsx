@@ -1,4 +1,4 @@
-import UserDetailInfo from "@/components/user-detail-info";
+import UserDetailInfo from "@/pages/user-details/components/user-detail-info";
 import {
   JHolderUserType,
   JholderAlbumType,
@@ -7,6 +7,8 @@ import {
 import useApi from "@/hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import UserAlbums from "../user-albums/user-albums";
+import UserPosts from "../user-posts/user-posts";
 
 type UserDetailParamType = {
   userId: string | undefined;
@@ -54,6 +56,20 @@ export default function UserDetails() {
       </p>
       <div className="flex justify-center">
         <UserDetailInfo user={user} />
+      </div>
+      <hr />
+      <p className="text-2xl font-bold text-center leading-10 my-1">
+        {user?.name}´s Albums
+      </p>
+      <div className="flex justify-center">
+        <UserAlbums />
+      </div>
+      <hr />
+      <p className="text-2xl font-bold text-center leading-10 my-1">
+        {user?.name}´s Posts
+      </p>
+      <div className="flex justify-center">
+        <UserPosts />
       </div>
     </>
   );

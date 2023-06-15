@@ -1,4 +1,4 @@
-import UsersList from "@/components/users-list";
+import UsersList from "@/pages/user-details/users-list";
 import { JHolderUserType } from "@/hooks/useApi/types";
 import useApi, { JHolderApi } from "@/hooks/useApi/useApi";
 import { AxiosResponse } from "axios";
