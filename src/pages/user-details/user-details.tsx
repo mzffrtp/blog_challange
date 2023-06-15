@@ -1,3 +1,4 @@
+import UserDetailInfo from "@/components/user-detail-info";
 import {
   JHolderUserType,
   JholderAlbumType,
@@ -49,9 +50,11 @@ export default function UserDetails() {
   return (
     <>
       <p className="text-2xl font-bold text-center leading-10 my-1">
-        Blogger Detail Page
+        {user?.name}´s Details
       </p>
-      <hr />
+      <div className="flex justify-center">
+        <UserDetailInfo user={user} />
+      </div>
     </>
   );
 }
