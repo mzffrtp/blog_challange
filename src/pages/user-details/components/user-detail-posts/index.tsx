@@ -1,4 +1,5 @@
 import { JholderPostType } from "@/hooks/useApi/types";
+import { Link } from "react-router-dom";
 
 export type UserDetailPostsType = {
   post: JholderPostType;
@@ -25,12 +26,14 @@ export default function UserDeailPosts({ post }: UserDetailPostsType) {
           </li>
         </ul>
         <div className="flex justify-center">
-          <button
-            type="button"
-            className="focus:outline-none text-white bg-lime-600 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
-          >
-            Details
-          </button>
+          <Link to={"posts/" + post.id}>
+            <button
+              type="button"
+              className="focus:outline-none text-white bg-lime-600 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
+            >
+              Post Details
+            </button>
+          </Link>
         </div>
       </div>
     </>
