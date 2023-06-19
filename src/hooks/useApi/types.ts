@@ -31,3 +31,11 @@ export type JholderAlbumType = {
 export type JholderPostType = JholderAlbumType & {
   body: string;
 };
+
+export type JholderAlbumPhotoType = {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+};
