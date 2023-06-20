@@ -9,14 +9,14 @@ export default function AlbumPhotos({ photos }: AlbumPhotosPropsType) {
     <>
       <div
         id="default-carousel"
-        className="relative w-full"
+        className="relative my-5"
         data-carousel="slide"
       >
-        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+        <div className="relative h-96 overflow-hidden rounded-lg md:h-96">
           {photos?.map((photo, index) => {
             return (
               <div
-                key={photo.id}
+                key={index}
                 className="duration-700 ease-in-out"
                 data-carousel-item
               >

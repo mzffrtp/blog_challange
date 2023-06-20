@@ -3,6 +3,7 @@ import {
   JHolderUserType,
   JholderAlbumPhotoType,
   JholderAlbumType,
+  JholderCommentType,
   JholderPostType,
 } from "./types";
 
@@ -62,6 +63,12 @@ export class JHolderApi {
     return userPosts.data;
   }
 
+  async getPost(postId: number) {
+    const post: AxiosResponse<JholderPostType> =
+      await this.axiosClient.get<JholderPostType>("posts/" + postId);
+    return post.data;
+  }
+
   async getAlbumPhotos(albumId?: number, start?: number, limit?: number) {
     const albumPhotos = await this.axiosClient.get<JholderAlbumPhotoType[]>(
       "photos",
@@ -74,6 +81,26 @@ export class JHolderApi {
       }
     );
     return albumPhotos.data;
+  }
+
+  async getComments(userId?: number, start?: number, limit?: number) {
+    const comments = await this.axiosClient.get<JholderCommentType[]>(
+      "comments",
+      {
+        params: {
+          userId: userId,
+          _start: start,
+          _limit: limit,
+        },
+      }
+    );
+    return comments.data;
+  }
+
+  async getComment(id?: number) {
+    const comment: AxiosResponse<JholderCommentType> =
+      await this.axiosClient.get<JholderCommentType>("comments/" + id);
+    return comment.data;
   }
 }
 
