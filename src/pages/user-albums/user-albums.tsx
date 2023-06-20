@@ -3,9 +3,12 @@ import {
   JholderAlbumPhotoType,
   JholderAlbumType,
 } from "@/hooks/useApi/types";
+
 import useApi from "@/hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import AlbumPhotos from "./components/album-photos/album-photos";
 
 export type AlbumsParamsType = {
   userId: string | undefined;
@@ -38,8 +41,6 @@ export default function UserAlbums() {
       setPhotos(results[2] as JholderAlbumPhotoType[]);
 
       setInitialized(true);
-
-      console.log("user", results[0]);
     })();
   }, []);
   if (!initialized) {
@@ -50,5 +51,18 @@ export default function UserAlbums() {
     );
   }
 
-  return <div>{album?.title}</div>;
+  return (
+    <div>
+      <h5 className="m-2 text-center text-2xl font-bold tracking-tight text-amber-400">
+        <span className="text-black">Album Name:</span>
+        <hr />
+        {album?.title}
+      </h5>
+      <h5 className="m-2 text-center text-2xl font-bold tracking-tight text-amber-400">
+        <span className="text-black">Album Photos:</span>
+        <hr />
+        <AlbumPhotos photos={photos} />
+      </h5>
+    </div>
+  );
 }

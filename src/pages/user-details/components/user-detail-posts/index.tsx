@@ -6,8 +6,6 @@ export type UserDetailPostsType = {
 };
 
 export default function UserDeailPosts({ post }: UserDetailPostsType) {
-  console.log(post.body);
-
   return (
     <>
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
