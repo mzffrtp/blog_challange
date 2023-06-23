@@ -2,21 +2,29 @@ import UsersList from "@/pages/user-details/users-list";
 import { JHolderUserType } from "@/hooks/useApi/types";
 import useApi, { JHolderApi } from "@/hooks/useApi/useApi";
 import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { UserStateType, setUsers } from "@/redux/userSlice";
 
 export default function MainPage() {
-  const [users, setUsers] = useState<JHolderUserType[] | null>(null);
-
   const api: JHolderApi = useApi();
+  const userState: UserStateType = useSelector(
+    (state: RootState) => state.userState
+  );
+  const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
-      const result: AxiosResponse<JHolderUserType[]> = await api.users();
-      setUsers(result.data);
+      if (userState.users === null) {
+        const result: AxiosResponse<JHolderUserType[]> = await api.users();
+        dispatch(setUsers(result.data));
+      }
     })();
   }, []);
   return (
     <>
-      {users === null ? (
+      {userState.users === null ? (
         // TODO: Error component may be created.
         <p>Loading</p>
       ) : (
@@ -26,7 +34,7 @@ export default function MainPage() {
           </p>
           <hr />
           <div className="m-auto p-3 gap-3 flex flex-auto flex-wrap">
-            {users.map((user, index) => (
+            {userState.users.map((user, index) => (
               <UsersList key={index} user={user} />
             ))}
           </div>

@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserDetailAlbums from "./components/user-detail-albums";
 import UserDetailPosts from "./components/user-detail-posts";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 type UserDetailParamType = {
   userId: string | undefined;
@@ -23,12 +25,24 @@ export default function UserDetails() {
   const api = useApi();
   const params: Readonly<Partial<UserDetailParamType>> =
     useParams<UserDetailParamType>();
+  const userState = useSelector((state: RootState) => state.userState);
 
   useEffect(() => {
     (async () => {
       if (params.userId) {
         const promises = [];
-        promises.push(api.getUser(parseInt(params.userId)));
+
+        const existUserInState: JHolderUserType | undefined = userState.users
+          ? userState.users.find((user) => {
+              return user.id === parseInt(params.userId as string);
+            })
+          : undefined;
+
+        promises.push(
+          existUserInState
+            ? existUserInState
+            : api.getUser(parseInt(params.userId))
+        );
         promises.push(api.getAlbums(parseInt(params.userId)));
         promises.push(api.getPosts(parseInt(params.userId)));
 
