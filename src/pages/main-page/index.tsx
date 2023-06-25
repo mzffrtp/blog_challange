@@ -9,6 +9,7 @@ import { UserStateType, setUsers } from "@/redux/userSlice";
 
 export default function MainPage() {
   const api: JHolderApi = useApi();
+
   const userState: UserStateType = useSelector(
     (state: RootState) => state.userState
   );
