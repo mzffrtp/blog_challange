@@ -5,4 +5,4 @@ BLOG TASK CHALLANGE
 
 Enjoy screen gif:
 
-![](screen.gif)screen
+![](screen.gif)
